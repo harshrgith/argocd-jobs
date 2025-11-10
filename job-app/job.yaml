@@ -12,10 +12,10 @@ data:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hello-job       # <-- Generates unique name: hello-job-abc123
+  generateName: hello-job-       # <-- Generates unique name: hello-job-abc123
   namespace: job1
   annotations:
-    argocd.argoproj.io/sync-options: Replace=true,
+    argocd.argoproj.io/hook: Sync,
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   labels:
     app: hello-job
