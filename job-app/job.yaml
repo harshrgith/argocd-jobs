@@ -28,5 +28,5 @@ spec:
       restartPolicy: Never
       containers:
       - name: hello
-        image: custom-image:latest
+        image: busybox
         command: ["sh", "-c", "echo 'Hello from Argo CD Job2!' && sleep 50"]
