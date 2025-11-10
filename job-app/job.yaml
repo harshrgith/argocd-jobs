@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dummy-config
+  namespace: job1
+  labels:
+    app: hello-job
+data:
+  placeholder: "This is a dummy resource to trigger ArgoCD sync hooks"
+
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -5,6 +16,7 @@ metadata:
   namespace: job1
   annotations:
     argocd.argoproj.io/hook: Sync     # Runs on every sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded  # Auto-delete after success
   labels:
     app: hello-job
 spec:
