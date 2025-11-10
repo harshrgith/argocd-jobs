@@ -1,12 +1,8 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hello-job
+  generateName: hello-job-
   namespace: jobs
-  annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-options: Replace=true
   labels:
     app: hello-job
 spec:
