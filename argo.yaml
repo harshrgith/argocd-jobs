@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hello-job-app1
+  name: hello-job-app
   namespace: argocd
 spec:
   project: default
