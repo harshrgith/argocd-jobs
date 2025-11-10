@@ -3,6 +3,10 @@ kind: Job
 metadata:
   generateName: hello-job-
   namespace: job1
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-options: Replace=true
   labels:
     app: hello-job
 spec:
