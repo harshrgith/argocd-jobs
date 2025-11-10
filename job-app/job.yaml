@@ -12,7 +12,7 @@ data:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: hello-job-        # <-- Generates unique name: hello-job-abc123
+  name: hello-job       # <-- Generates unique name: hello-job-abc123
   namespace: job1
   annotations:
     argocd.argoproj.io/sync-options: Replace=true
