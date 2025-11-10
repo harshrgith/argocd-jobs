@@ -16,6 +16,6 @@ spec:
       containers:
       - name: hello
         image: busybox
-        command: ["echo", "Hello from Argo CD Job2!"]
+        command: ["echo", "Hello from Argo CD Job4!"]
       restartPolicy: Never
   backoffLimit: 0
