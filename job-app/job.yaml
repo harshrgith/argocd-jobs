@@ -21,4 +21,4 @@ spec:
           - sh
           - -c
           - |
-            echo "Hello from Argo CD Job1! $(date -u)"
+            echo "Hello from Argo CD Job11! $(date -u)"
