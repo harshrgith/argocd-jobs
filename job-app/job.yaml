@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generateName: hello-job-
-  namespace: jobs
+  namespace: job1
   labels:
     app: hello-job
 spec:
