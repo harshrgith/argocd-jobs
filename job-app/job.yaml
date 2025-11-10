@@ -1,16 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  # Unique name on every sync
   generateName: hello-job-
   namespace: jobs
   labels:
     app.kubernetes.io/name: hello-job
     app.kubernetes.io/part-of: argo-sync
-    # Optional: human-readable timestamp
-    sync-timestamp: "{{ now | date \"20060102-150405\" }}"
+    # Removed invalid template
 spec:
-  ttlSecondsAfterFinished: 86400   # auto-delete after 1 day
+  ttlSecondsAfterFinished: 86400
   backoffLimit: 0
   template:
     metadata:
