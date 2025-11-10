@@ -18,6 +18,6 @@ spec:
       containers:
       - name: hello
         image: busybox
-        command: ["sh", "-c", "echo 'Hello from Argo CD Job!'; sleep 20"]
+        command: ["sh", "-c", "echo 'Hello from Argo CD Job1!'; sleep 20"]
       restartPolicy: Never
   backoffLimit: 0
