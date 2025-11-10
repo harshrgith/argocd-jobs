@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: hello-job
+  name: hello-job
   namespace: jobs
   labels:
     app.kubernetes.io/name: hello-job

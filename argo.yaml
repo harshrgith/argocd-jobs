@@ -12,10 +12,10 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: default
-syncPolicy:
-  automated:
-    prune: true
-    selfHeal: true
-  syncOptions:
-    - Replace=true        # Deletes old Job, creates new one
-    - PruneLast=true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Replace=true
+      - PruneLast=true
