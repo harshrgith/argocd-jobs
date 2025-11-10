@@ -15,8 +15,6 @@ metadata:
   generateName: hello-job-        # <-- Generates unique name: hello-job-abc123
   namespace: job1
   annotations:
-    argocd.argoproj.io/hook: Sync     # Runs on every sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded  # Auto-delete after success
     argocd.argoproj.io/sync-options: Replace=true
   labels:
     app: hello-job
