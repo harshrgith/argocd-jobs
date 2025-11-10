@@ -30,4 +30,4 @@ spec:
       containers:
       - name: hello
         image: busybox
-        command: ["sh", "-c", "echo 'Hello from Argo CD Job2!' && sleep 100"]
+        command: ["sh", "-c", "echo 'Hello from Argo CD Job2!' && sleep 50"]
