@@ -1,23 +1,33 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  # Unique name on every sync
   generateName: hello-job-
   namespace: jobs
   labels:
     app.kubernetes.io/name: hello-job
-    app.kubernetes.io/instance: hello-job-{{ now | date "20060102-150405" }}
-    argocd.argoproj.io/sync-wave: "1"
-  annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceededOrFailed
-    argocd.argoproj.io/sync-options: Prune=false
+    app.kubernetes.io/part-of: argo-sync
+    # Optional: human-readable timestamp
+    sync-timestamp: "{{ now | date \"20060102-150405\" }}"
 spec:
-  ttlSecondsAfterFinished: 86400
+  ttlSecondsAfterFinished: 86400   # auto-delete after 1 day
+  backoffLimit: 0
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: hello-job
     spec:
+      restartPolicy: Never
       containers:
       - name: hello
         image: busybox
-        command: ["sh", "-c", "echo 'Hello from Argo CD Job1!'; sleep 20"]
-      restartPolicy: Never
-  backoffLimit: 0
+        command:
+          - sh
+          - -c
+          - |
+            echo "Hello from Argo CD Job! $(date -u)"
+            # Update last-run tracker
+            kubectl patch configmap hello-job-tracker \
+              -n jobs --type=merge \
+              -p "{\"data\":{\"last-run\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}}" \
+              || true
