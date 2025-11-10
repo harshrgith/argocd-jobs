@@ -26,8 +26,3 @@ spec:
           - -c
           - |
             echo "Hello from Argo CD Job! $(date -u)"
-            # Update last-run tracker
-            kubectl patch configmap hello-job-tracker \
-              -n jobs --type=merge \
-              -p "{\"data\":{\"last-run\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}}" \
-              || true
