@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hello-job-app1
+  name: hello-job-app
   namespace: argocd
 spec:
   project: default
@@ -12,12 +12,10 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-      - PrunePropagationPolicy=foreground
-      - Replace=true
-      - PruneLast=true
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+  syncOptions:
+    - Replace=true        # Deletes old Job, creates new one
+    - PruneLast=true

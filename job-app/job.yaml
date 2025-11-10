@@ -1,12 +1,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: hello-job-
+  generateName: hello-job
   namespace: jobs
   labels:
     app.kubernetes.io/name: hello-job
-    app.kubernetes.io/part-of: argo-sync
-    # Removed invalid template
 spec:
   ttlSecondsAfterFinished: 86400
   backoffLimit: 0
@@ -23,4 +21,4 @@ spec:
           - sh
           - -c
           - |
-            echo "Hello from Argo CD Job! $(date -u)"
+            echo "Hello from Argo CD Job1! $(date -u)"
