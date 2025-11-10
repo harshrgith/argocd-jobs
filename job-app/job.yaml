@@ -4,8 +4,8 @@ metadata:
   generateName: hello-job
   namespace: jobs
   annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceededOrFailed
 spec:
   template:
     spec:
