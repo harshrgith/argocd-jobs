@@ -5,6 +5,8 @@ metadata:
   namespace: job1
   labels:
     app: hello-job
+annotations:
+    argocd.argoproj.io/sync-options: Replace=true   
 data:
   placeholder: "This is a dummy resource to trigger ArgoCD sync hooks"
 
