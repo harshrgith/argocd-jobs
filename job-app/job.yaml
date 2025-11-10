@@ -1,21 +1,22 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hello-job
+  generateName: hello-job-        # <-- Generates unique name: hello-job-abc123
   namespace: job1
   annotations:
-    argocd.argoproj.io/sync-options: Replace=true
+    argocd.argoproj.io/hook: Sync     # Runs on every sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded  # Auto-delete after success
   labels:
     app: hello-job
 spec:
+  backoffLimit: 0
   template:
     metadata:
       labels:
         app: hello-job
     spec:
+      restartPolicy: Never
       containers:
       - name: hello
         image: busybox
-        command: ["echo", "Hello from Argo CD Job4!"]
-      restartPolicy: Never
-  backoffLimit: 0
+        command: ["echo", "Hello from Argo CD Job1!"]
