@@ -6,11 +6,14 @@ metadata:
   labels:
     app.kubernetes.io/name: hello-job
 spec:
-  ttlSecondsAfterFinished: 86400
-  backoffLimit: 0
+  # Required for fixed-name Jobs
+  selector:
+    matchLabels:
+      controller-uid: hello-job-uid
   template:
     metadata:
       labels:
+        controller-uid: hello-job-uid   # Must match selector
         app.kubernetes.io/name: hello-job
     spec:
       restartPolicy: Never
@@ -21,4 +24,6 @@ spec:
           - sh
           - -c
           - |
-            echo "Hello from Argo CD Job11! $(date -u)"
+            echo "Hello from Argo CD Job! $(date -u)"
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 3600
