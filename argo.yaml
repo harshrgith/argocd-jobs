@@ -11,7 +11,7 @@ spec:
     path: job-app
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: jobs
   syncPolicy:
     automated:
       prune: true

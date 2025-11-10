@@ -1,28 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hello-job1               # fixed name
+  name: hello-job
   namespace: jobs
-  labels:
-    app.kubernetes.io/name: hello-job1
 spec:
-  selector:
-    matchLabels:
-      controller-uid: hello-job1-uid          # must match template
   template:
-    metadata:
-      labels:
-        controller-uid: hello-job1-uid
-        app.kubernetes.io/name: hello-job1
     spec:
-      restartPolicy: Never
       containers:
       - name: hello
         image: busybox
-        command:
-          - sh
-          - -c
-          - |
-            echo "Hello from Argo CD Job! $(date -u)"
-  backoffLimit: 0
-  ttlSecondsAfterFinished: 3600
+        command: ["echo", "Hello from Argo CD Job!"]
+      restartPolicy: Never
+  backoffLimit: 4
