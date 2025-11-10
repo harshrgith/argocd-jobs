@@ -1,19 +1,18 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hello-job
+  name: hello-job               # fixed name
   namespace: jobs
   labels:
     app.kubernetes.io/name: hello-job
 spec:
-  # Required for fixed-name Jobs
   selector:
     matchLabels:
-      controller-uid: hello-job-uid
+      controller-uid: hello-job-uid          # must match template
   template:
     metadata:
       labels:
-        controller-uid: hello-job-uid   # Must match selector
+        controller-uid: hello-job-uid
         app.kubernetes.io/name: hello-job
     spec:
       restartPolicy: Never
