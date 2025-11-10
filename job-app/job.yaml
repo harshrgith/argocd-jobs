@@ -5,7 +5,6 @@ metadata:
   namespace: job1
   annotations:
     argocd.argoproj.io/hook: Sync     # Runs on every sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded  # Auto-delete after success
   labels:
     app: hello-job
 spec:
