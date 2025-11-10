@@ -3,12 +3,21 @@ kind: Job
 metadata:
   name: hello-job
   namespace: jobs
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-options: Replace=true
+  labels:
+    app: hello-job
 spec:
   template:
+    metadata:
+      labels:
+        app: hello-job
     spec:
       containers:
       - name: hello
         image: busybox
-        command: ["echo", "Hello from Argo CD Job1!"]
+        command: ["echo", "Hello from Argo CD Job!"]
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 0
